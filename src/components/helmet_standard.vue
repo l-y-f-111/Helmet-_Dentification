@@ -23,7 +23,7 @@
         <el-menu router style="border: none" :default-active="$route.path" background-color="lightslategrey"
                  active-text-color="deepskyblue" text-color="rgba(255,255,255,0.65)">
 
-          <el-menu-item index="/">
+          <el-menu-item index="/home">
             <el-icon>
               <House/>
             </el-icon>
@@ -60,7 +60,7 @@
           <el-icon>
             <View/>
           </el-icon>
-          <el-breadcrumb separator="/">
+          <el-breadcrumb separator="/" style="background-color: lightgrey;font-size: 20px">
 
             <el-breadcrumb-item :to="{ path: '/safety_warning' }">安全警示</el-breadcrumb-item>
             <el-breadcrumb-item>

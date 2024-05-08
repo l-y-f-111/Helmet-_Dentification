@@ -7,10 +7,23 @@ import Helmet_type from "@/components/Hemlet_type.vue"
 import Helmet from "@/components/Helmet.vue"
 import Helmet_brand from "@/components/helmet_brand.vue";
 import Helmet_standard from "@/components/helmet_standard.vue";
+import Login from "@/components/Login.vue"
+import ValidCode from "@/components/ValidCode.vue";
+import Register from "@/components/Register.vue"
+import Update_Psw from "@/components/Update_Psw.vue";
 
 const routes = [
     {
-        path: '/',
+        path:'/',
+        name:'login',
+        component: Login
+    },
+    { path:'/validcode',
+        name:'validcode',
+        component: ValidCode
+    },
+    {
+        path: '/home',
         name: 'home',
         component: Home
     },
@@ -42,9 +55,15 @@ const routes = [
         path: '/helmet_standard',
         name: 'helmet_standard',
         component: Helmet_standard
+    }, {
+        path: '/register',
+        name: 'register',
+        component: Register
+    }, {
+        path: '/update_psw',
+        name: 'update_psw',
+        component: Update_Psw
     }
-
-
 ];
 const router = createRouter({
     history: createWebHistory(),

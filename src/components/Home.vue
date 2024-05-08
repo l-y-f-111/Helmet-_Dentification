@@ -4,7 +4,7 @@
     <el-container class="home_container">
       <el-aside style="background-color: lightslategrey; width: 200px">
         <div
-            style="height: 60px;line-height: 60px;color: white;display: flex;align-items: center;justify-content: center">
+            style="height: 100px;line-height: 60px;color: white;display: flex;align-items: center;justify-content: center">
           <img src="/src/assets/logo.jpg" style="height: 150px;width: 150px;margin-bottom: -20px">
         </div>
         <!--          <el-menu router background-color="lightslategrey" active-text-color="blue" style="border: none" default-active="$route.path">-->
@@ -23,7 +23,7 @@
         <el-menu router style="border: none" :default-active="$route.path" background-color="lightslategrey"
                  active-text-color="deepskyblue" text-color="rgba(255,255,255,0.65)">
 
-          <el-menu-item index="/">
+          <el-menu-item index="/home">
             <el-icon>
               <House/>
             </el-icon>
@@ -58,16 +58,16 @@
         <!--    头部-->
         <el-header>
           <div
-              style="align-items: center;justify-self: center;display: flex;margin-left: 360px;font-weight:bolder;font-size: 40px">
+              style="align-items: center;justify-self: center;display: flex;margin-left: 60vh;font-weight:bolder;font-size: 40px">
             欢迎使用头盔检测系统！
           </div>
 
         </el-header>
         <!--      主体-->
         <el-main>
-          <div class="block text-center" style="width: 350px;margin-left: 30%">
+          <div class="block text-center" style="width: 100%;margin-left: 44vh">
 
-            <el-carousel height="200px " motion-blur>
+            <el-carousel style="height: 50%;width:50%;" motion-blur>
               <!--              <el-carousel-item v-for="item in carouseData" :key="item">-->
               <!--                <img :src="item.url" alt=""/>-->
               <!--              </el-carousel-item>-->
@@ -84,19 +84,17 @@
                 <img src="E:\helmet-_dentificatihon\src\assets\Carousel_image\4.jpg" style="width: 100%;height: 100%">
               </el-carousel-item>
             </el-carousel>
-            <span class="demonstration">交通事故警示</span>
+            <span class="demonstration" style="margin-left: 40vh">交通事故警示</span>
           </div>
-          <div style="align-items: center;justify-self: center;display:
-          flex;margin-left:200px;text-indent: 2em;font-size: 20px;font-family: 新宋体;line-height: 40px">
+          <div class="txt" style="align-items: center;justify-self: center;display:
+          flex;text-indent: 2em;font-size: 20px;font-family: 新宋体;line-height: 40px;font-weight:bold;  ">
             <strong>
-              <br>
-              <br>
               近年来，交通事故频发，因未佩戴头盔而造成的伤亡率居高不下。以天津市为例，2019年天津市
-              <br>
+
               范围内发生的交通死亡事故中有21.17%的事故涉及电动自行车，同比上升8.99%.在因交通事故
-              <br>
+
               死亡的人员中，骑、乘电动自行车的人数较多，其中颅脑损伤致死率高达80%。有研究表明，正
-              <br>
+
               确佩戴安全头盔、规范使用安全带能够将交通事故死亡风险降低60%至70%。
             </strong>
           </div>
@@ -125,7 +123,7 @@ import {Histogram, House, Search, View} from "@element-plus/icons-vue";
 .back {
   display: flex;
   flex-direction: column;
-  background-image: url("/image/main.png");
+
   background-attachment: fixed;
   width: 100%;
   height: 100%;
@@ -162,5 +160,13 @@ import {Histogram, House, Search, View} from "@element-plus/icons-vue";
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
-
+.txt{
+  width: 60%;
+  height:37vh;
+  margin-left: 35vh;
+  margin-top: 2vh;
+  box-shadow: 1px 0 4px rgba(0, 21, 41, .35);
+  border-radius: 5px;
+  border: 4px solid white;
+}
 </style>
