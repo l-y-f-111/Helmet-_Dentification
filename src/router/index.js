@@ -11,6 +11,7 @@ import Login from "@/components/Login.vue"
 import ValidCode from "@/components/ValidCode.vue";
 import Register from "@/components/Register.vue"
 import Update_Psw from "@/components/Update_Psw.vue";
+import Recognize_mp4 from "@/components/Recognize_mp4.vue"
 
 const routes = [
     {
@@ -63,6 +64,11 @@ const routes = [
         path: '/update_psw',
         name: 'update_psw',
         component: Update_Psw
+    }
+    , {
+        path: '/recognize_mp4',
+        name: 'recognize_mp4',
+        component: Recognize_mp4
     }
 ];
 const router = createRouter({

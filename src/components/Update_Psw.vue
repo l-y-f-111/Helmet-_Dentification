@@ -1,47 +1,46 @@
 <template>
-  <body style="background-color: lightskyblue">
-  <div style="height: 100svh;display: flex;align-items: center;justify-content: center;overflow: hidden">
-    <div
-        style="display: flex;background-color: white;width: 60%;height:60%;border-radius: 10px;overflow: hidden;align-items: center;justify-content: center">
-      <div class="img" style="flex: 1">
-        <img src="../assets/login.png" alt="" style="width: 100%;margin-left: 25px">
-      </div>
-      <div style="flex: 1;display: flex;align-items: center;justify-content: center">
-        <el-form :model="user" style="width: 80%">
-          <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px">
-            忘记密码
-          </div>
-          <el-form-item prop="account">
-            <el-input prefix-icon="el-icon-user" size="large" placeholder="请输入账号"
-                      v-model="user.uid"></el-input>
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input prefix-icon="el-icon-lock" size="large" show-password placeholder="请输入新的密码"
-                      v-model="user.psw"></el-input>
-          </el-form-item>
-          <el-form-item prop="telephone">
-            <el-input prefix-icon="el-icon-lock" size="large" show-password placeholder="请再次输入新的密码"
-                      v-model="user.againpassword"></el-input>
-          </el-form-item>
+  <div id="building">
+    <body>
+    <div style="height: 100svh;display: flex;align-items: center;justify-content: center;overflow: hidden">
+      <div class="register_body"
+      >
+        <div style="flex: 1;display: flex;align-items: center;justify-content: center">
+          <el-form :model="user" style="width: 80%">
+            <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px">
+              忘记密码
+            </div>
+            <el-form-item prop="account">
+              <el-input prefix-icon="el-icon-user" size="large" placeholder="请输入账号"
+                        v-model="user.uid"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input prefix-icon="el-icon-lock" size="large" show-password placeholder="请输入新的密码"
+                        v-model="user.psw"></el-input>
+            </el-form-item>
+            <el-form-item prop="telephone">
+              <el-input prefix-icon="el-icon-lock" size="large" show-password placeholder="请再次输入新的密码"
+                        v-model="user.againpassword"></el-input>
+            </el-form-item>
 
 
-          <el-form-item size="large">
-            <el-button class="regitser_btn" type="success" style="width: 100%" @click="update_psw">
-              修改
-            </el-button>
-          </el-form-item>
-          <div style="display: flex">
-            <div style="flex: 1">
+            <el-form-item size="large">
+              <el-button class="regitser_btn" type="success" style="width: 100%" @click="update_psw">
+                修改
+              </el-button>
+            </el-form-item>
+            <div style="display: flex">
+              <div style="flex: 1">
                             <span style="color: #0f9876;cursor: pointer" @click="login()">
                                 返回
                             </span>
+              </div>
             </div>
-          </div>
-        </el-form>
+          </el-form>
+        </div>
       </div>
     </div>
+    </body>
   </div>
-  </body>
 
 </template>
 <script setup>
@@ -85,5 +84,32 @@ export default {
 
 .img {
   box-shadow: 3px 3px 10px rgba(238, 241, 244, 0.75);
+}
+#building {
+  background: url("/src/assets/preview.jpg");
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+}
+.register_body {
+  position: relative;
+  border: 4px solid #ccc;
+
+
+  /* 使边框也变透明 */
+  border-color: transparent;
+  /* 给边框加阴影能够使其有立体感 */
+  box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 0.1);
+
+  background-color: rgba(255, 255, 245, 0.3);
+  display: flex;
+  width: 40%;
+  height: 60%;
+  border-radius: 10px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
 }
 </style>

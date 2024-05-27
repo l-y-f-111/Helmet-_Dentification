@@ -30,13 +30,17 @@
             <span style="display: flex;align-items: center;justify-content: center">系统首页</span>
           </el-menu-item>
 
-          <el-menu-item index="/recognize">
+          <el-menu-item   index="/recognize">
+            <el-icon><Search /></el-icon>
+            <span style="display: flex;align-items: center;justify-content: center">识别图片</span>
+          </el-menu-item>
+
+          <el-menu-item index="/recognize_mp4">
             <el-icon>
               <Search/>
             </el-icon>
-            <span style="display: flex;align-items: center;justify-content: center">识别图像</span>
+            <span style="display: flex;align-items: center;justify-content: center">识别视频</span>
           </el-menu-item>
-
 
           <el-menu-item index="/detailed_data">
             <el-icon>
