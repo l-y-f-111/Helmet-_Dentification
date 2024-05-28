@@ -30,8 +30,10 @@
             <span style="display: flex;align-items: center;justify-content: center">系统首页</span>
           </el-menu-item>
 
-          <el-menu-item   index="/recognize">
-            <el-icon><Search /></el-icon>
+          <el-menu-item index="/recognize">
+            <el-icon>
+              <Search/>
+            </el-icon>
             <span style="display: flex;align-items: center;justify-content: center">识别图片</span>
           </el-menu-item>
 
@@ -69,18 +71,20 @@
 
 
           <el-row>
-            <el-container style="display: flex;align-items: center">
-              <el-upload
-                  class="avatar-uploader"
-                  action="http://localhost:8080/file/upload"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <el-icon v-else class="el-icon-plus avatar-uploader-icon">
-                  <Plus></Plus>
-                </el-icon>
-              </el-upload>
 
+            <el-container style="display: flex;align-items: center">
+              <div>
+                <el-upload
+                    class="avatar-uploader"
+                    action="http://localhost:8080/file/upload"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess">
+                  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                  <el-icon v-else class="el-icon-plus avatar-uploader-icon">
+                    <Plus></Plus>
+                  </el-icon>
+                </el-upload>
+              </div>
 
             </el-container>
 
@@ -97,25 +101,26 @@
               <!--                </el-scrollbar>-->
               <!--              </div>-->
               <el-col>
-                <el-row :span="5" style=" border: 5px solid #ccc; width: 80vh">
-                  <div style="margin-top: 8vh">    检 测 结 果：</div>
+                <el-row :span="5" style=" border: 5px solid #ccc; width: 80vh;margin-left: -8vh;">
+                  <div style="margin-top: 8vh"> 检 测 结 果：</div>
 
-                  <el-scrollbar height="30vh"  style="width:30vh;margin-left: 12vh">
+                  <el-scrollbar height="30vh" style="width:30vh;margin-left: 12vh">
                     <p v-for="type in types" :key="type" class="scrollbar-demo-item">{{ type }}</p>
                   </el-scrollbar>
                 </el-row>
 
                 <el-row :span="4"></el-row>
 
-                <el-row :span="5" style=" border: 5px solid #ccc;width: 80vh">
-                  <div style="margin-top: 8vh">   准 确 率 ：</div>
-                  <el-scrollbar height="30vh" style="width:30vh;margin-left: 17vh;display: flex;align-items: center;justify-self: center">
+                <el-row :span="5" style=" border: 5px solid #ccc;width: 80vh;margin-left: -8vh">
+                  <div style="margin-top: 8vh;"> 准 确 率 ：</div>
+                  <el-scrollbar height="30vh"
+                                style="width:30vh;margin-left: 17vh;display: flex;align-items: center;justify-self: center">
                     <p v-for="ac in accuracy" :key="ac" class="scrollbar-demo-item">{{ ac }}</p>
                   </el-scrollbar>
                 </el-row>
 
               </el-col>
-              <el-button @click="confirm" class="button_style">识别图像</el-button>
+              <el-button @click="confirmPhoto" class="button_style">识别图片</el-button>
             </div>
 
 
@@ -130,9 +135,7 @@
 <script lang="ts">
 
 import api from '../api.js'
-
 </script>
-
 
 
 <script lang="ts" setup>
@@ -147,14 +150,13 @@ import request from "@/request";
 import axios from "axios";
 
 
-
 const imageUrl = ref('')
 
 
 let dialogImageUrl = '';
 let dialogVisible = false;
-const types=ref({}) ;
-const  accuracy=ref({});
+const types = ref({});
+const accuracy = ref({});
 
 function handleRemove(file, fileList) {
   console.log(file, fileList);
@@ -169,27 +171,38 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (
     response,
     uploadFile
 ) => {
-  imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+  imageUrl.value = response.data
 }
 
 
 const
-    confirm = async () => {
-      const response = await api.getPicture()
+    confirmPhoto = async () => {
+      //photo名称
+      const Idnex = imageUrl.value.lastIndexOf('/')
+      const photoName = imageUrl.value.substring(Idnex + 1, imageUrl.value.length)
+
+      const dotIndex = photoName.lastIndexOf('.');
+      const filename = photoName.substring(0, dotIndex);
+
+      const response = await api.getPicture({
+        params: {
+          photoName: photoName
+        }
+      })
       imageUrl.value = "data:image/png;base64, " + response.data
       //获取类型信息
-   /*   axios.get('/helmet/type')
-          .then(response => {
-            this.items = response.data; // 将后端返回的数据赋值给items数组
-          })
-          .catch(error => {
-            console.error(error);
-          });*/
-      types.value = await request.post('/helmet/type')
+      /*   axios.get('/helmet/type')
+             .then(response => {
+               this.items = response.data; // 将后端返回的数据赋值给items数组
+             })
+             .catch(error => {
+               console.error(error);
+             });*/
+      types.value = await request.post('/helmet/type', filename)
       // types = (await axios.get('http:/localhost:8080/helmet/type')).data
-     // console.log(items)
-     // console.log("asdadadadasdasdasd")
-      accuracy.value = await request.post('/helmet/accuracy')
+      // console.log(items)
+      // console.log("asdadadadasdasdasd")
+      accuracy.value = await request.post('/helmet/accuracy', filename)
     }
 </script>
 
@@ -215,6 +228,8 @@ const
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  margin-left: 10vh;
+  margin-top: -10vh;
 }
 
 .avatar-uploader .el-upload:hover {
@@ -224,15 +239,15 @@ const
 .avatar-uploader-icon {
   font-size: 100px;
   color: #8c939d;
-  width: 55vh;
-  height: 55vh;
+  width: 65vh;
+  height: 65vh;
   line-height: 400px;
   text-align: center;
 }
 
 .avatar {
-  width: 55vh;
-  height: 55vh;
+  width: 65vh;
+  height: 65vh;
   display: block;
 }
 

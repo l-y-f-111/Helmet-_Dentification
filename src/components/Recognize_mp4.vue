@@ -69,7 +69,9 @@
 
 
           <el-row>
+
             <el-container style="display: flex;align-items: center">
+              <div>
               <el-upload
                   class="avatar-uploader"
                   action="http://localhost:8080/file/upload"
@@ -81,7 +83,7 @@
                 </el-icon>
               </el-upload>
 
-
+            </div>
             </el-container>
 
             <div>
@@ -96,26 +98,7 @@
               <!--                  <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>-->
               <!--                </el-scrollbar>-->
               <!--              </div>-->
-              <el-col>
-                <el-row :span="5" style=" border: 5px solid #ccc; width: 80vh">
-                  <div style="margin-top: 8vh">    检 测 结 果：</div>
-
-                  <el-scrollbar height="30vh"  style="width:30vh;margin-left: 12vh">
-                    <p v-for="type in types" :key="type" class="scrollbar-demo-item">{{ type }}</p>
-                  </el-scrollbar>
-                </el-row>
-
-                <el-row :span="4"></el-row>
-
-                <el-row :span="5" style=" border: 5px solid #ccc;width: 80vh">
-                  <div style="margin-top: 8vh">   准 确 率 ：</div>
-                  <el-scrollbar height="30vh" style="width:30vh;margin-left: 17vh;display: flex;align-items: center;justify-self: center">
-                    <p v-for="ac in accuracy" :key="ac" class="scrollbar-demo-item">{{ ac }}</p>
-                  </el-scrollbar>
-                </el-row>
-
-              </el-col>
-              <el-button @click="confirm" class="button_style">识别图像</el-button>
+              <el-button @click="confirm" class="button_style">识别视频</el-button>
             </div>
 
 
@@ -165,17 +148,27 @@ function handlePictureCardPreview(file) {
   this.dialogVisible = true;
 }
 
-const handleAvatarSuccess: UploadProps['onSuccess'] = (
+const handleAvatarSuccess: UploadProps['onSuccess'] = async (
     response,
     uploadFile
 ) => {
-  imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+  imageUrl.value = response.data
+  console.log(response)
 }
 
 
 const
     confirm = async () => {
-      const response = await api.getPicture()
+      const Idnex = imageUrl.value.lastIndexOf('/')
+      const Mp4Name = imageUrl.value.substring(Idnex + 1, imageUrl.value.length)
+
+      const dotIndex = Mp4Name.lastIndexOf('.');
+      const filename = Mp4Name.substring(0, dotIndex);
+      const response = await api.getmp4({
+        params: {
+          photoName: Mp4Name
+        }
+      })
       imageUrl.value = "data:image/png;base64, " + response.data
       //获取类型信息
    /*   axios.get('/helmet/type')
@@ -208,13 +201,16 @@ const
 <!--  }-->
 <!--}-->
 <!--</script>-->
-<style>
-.avatar-uploader .el-upload {
+<style scoped>
+.avatar-uploader >>> .el-upload {
   border: 5px dashed #d9d9d9;
   border-radius: 6px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  margin-left: 50vh;
+  margin-top: -20vh;
+
 }
 
 .avatar-uploader .el-upload:hover {
@@ -224,15 +220,15 @@ const
 .avatar-uploader-icon {
   font-size: 100px;
   color: #8c939d;
-  width: 55vh;
-  height: 55vh;
+  width: 80vh;
+  height: 70vh;
   line-height: 400px;
   text-align: center;
 }
 
 .avatar {
-  width: 55vh;
-  height: 55vh;
+  width: 80vh;
+  height: 70vh;
   display: block;
 }
 
@@ -251,7 +247,7 @@ const
   transition-duration: 0.4s;
   cursor: pointer;
   margin-top: 75vh;
-  margin-left: -35vh;
+  margin-left: -68vh;
 
 }
 
