@@ -12,6 +12,7 @@ import ValidCode from "@/components/ValidCode.vue";
 import Register from "@/components/Register.vue"
 import Update_Psw from "@/components/Update_Psw.vue";
 import Recognize_mp4 from "@/components/Recognize_mp4.vue"
+import Recognize_mp4test from "@/components/Recognize_mp4test.vue"
 
 const routes = [
     {
@@ -69,6 +70,11 @@ const routes = [
         path: '/recognize_mp4',
         name: 'recognize_mp4',
         component: Recognize_mp4
+    }
+    , {
+        path: '/recognize_mp4test',
+        name: 'recognize_mp4test',
+        component: Recognize_mp4test
     }
 ];
 const router = createRouter({

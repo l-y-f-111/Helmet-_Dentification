@@ -35,7 +35,7 @@
             <span style="display: flex;align-items: center;justify-content: center">识别图片</span>
           </el-menu-item>
 
-          <el-menu-item index="/recognize_mp4">
+          <el-menu-item index="/recognize_mp4test">
             <el-icon>
               <Search/>
             </el-icon>

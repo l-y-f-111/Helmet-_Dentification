@@ -8,7 +8,7 @@
 
         <div style="flex: 1;display: flex;align-items: center;justify-content: center">
           <el-form :model="user" style="width: 50%">
-            <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px">
+            <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px;color: white;font-size: 24px">
               欢迎登入头盔识别系统
             </div>
             <el-form-item prop="uid">
@@ -21,8 +21,8 @@
             </el-form-item>
             <el-form-item prop="validCode">
               <div style="display: flex">
-                <el-input placeholder="请输入验证码" v-model="ValidCodeMode" style="flex: 1"></el-input>
-                <div class="code" @click="refreshCode" style="flex: 1;margin-left: 8vh;">
+                <el-input placeholder="请输入验证码" v-model="ValidCodeMode" style="flex: 1;width: 37vh"></el-input>
+                <div class="code" @click="refreshCode" style="flex: 1;margin-left: 0vh;">
                   <ValidCode title="点击刷新验证码" :identifyCode="identifyCode"></ValidCode>
                 </div>
               </div>
@@ -33,14 +33,14 @@
               </el-button>
             </el-form-item>
             <div style="display: flex">
-              <div style="flex: 1">
+              <div style="flex: 1;color: white">
                 还没有账号？请
-                <span style="color: #0f9876;cursor: pointer" @click="register">
+                <span style="color: chartreuse;cursor: pointer" @click="register">
                                 注册
                             </span>
               </div>
               <div style="flex: 1;text-align: right">
-                            <span style="color: #0f9876 ;cursor: pointer" @click="update_psw">
+                            <span style="color: chartreuse ;cursor: pointer" @click="update_psw">
                                 忘记密码
                             </span>
               </div>

@@ -7,7 +7,7 @@
 
         <div  style="flex: 1;display: flex;align-items: center;justify-content: center">
           <el-form :model="user" style="width: 80%">
-            <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px">
+            <div style="font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 20px;color: white">
               欢迎注册头盔识别系统
             </div>
             <el-form-item prop="account">
@@ -34,7 +34,7 @@
             </el-form-item>
             <div style="display: flex">
               <div style="flex: 1">
-                            <span style="color: #0f9876;cursor: pointer" @click="login()">
+                            <span style="color:chartreuse;cursor: pointer" @click="login()">
                                 返回
                             </span>
               </div>
